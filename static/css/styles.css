@@ -1,177 +1,351 @@
-/* Custom styles for KimCode Creations */
-
 :root {
-  --primary: #FF6B6B;
-  --primary-dark: #FF5252;
-  --secondary: #4ECDC4;
-  --secondary-light: #7EEADF;
-  --text-color: #333333;
-  --bg-color: #F5F5F5;
+  --primary: #00ffff;
+  --secondary: #ff00ff;
+  --accent: #ffff00;
+  --dark: #121212;
+  --light: #f0f0f0;
 }
 
-.dark {
-  --primary: #FF79C6;
-  /* Softer neon pink */
-  --primary-dark: #FF56B3;
-  --secondary: #8BE9FD;
-  /* Softer neon cyan */
-  --secondary-light: #A4F0FF;
-  --text-color: #F8F8F2;
-  --bg-color: #282A36;
-  /* Dark background */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', sans-serif;
+  background-color: var(--dark);
+  color: var(--light);
+  overflow-x: hidden;
 }
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.text-primary {
+/* Header and Navigation */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: var(--light);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
   color: var(--primary);
 }
 
-.text-secondary {
-  color: var(--secondary);
+/* Navbar improvements */
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--light);
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-.bg-primary {
-  background-color: var(--primary);
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(18, 18, 18, 0.95);
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 1rem 0;
+  }
 }
 
-.hover\:bg-primary-dark:hover {
-  background-color: var(--primary-dark);
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-.dark .bg-primary {
-  background-color: var(--secondary);
+h1 {
+  font-size: 5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.dark .hover\:bg-primary-dark:hover {
-  background-color: var(--secondary-light);
+.tagline {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-/* Improved readability for dark mode */
-.dark body {
-  background-color: #1A1B26;
-  /* Even darker background for better contrast */
+/* Neon Text Effect */
+.neon-text {
+  color: var(--primary);
+  text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 20px var(--primary);
+  animation: flicker 1.5s infinite alternate;
 }
 
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6 {
-  color: var(--secondary);
+@keyframes flicker {
+
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 20px var(--primary);
+  }
+
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+  }
 }
 
-.dark p,
-.dark li {
-  color: #D8D8D8;
-  /* Slightly off-white for better readability */
+/* Sections */
+section {
+  padding: 5rem 0;
 }
 
-/* Softer glowing effect for dark mode */
-.dark .neon-text {
-  text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary);
+.section-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-/* Adjusted glitch effect */
-.glitch {
+/* Services */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+}
+
+/* Portfolio */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.portfolio-item {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  overflow: hidden;
   position: relative;
-  color: var(--text-color);
-  text-shadow: 0 0 2px var(--primary);
 }
 
-.dark .glitch {
-  color: var(--secondary);
-  text-shadow: 0 0 5px var(--secondary);
-}
-
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
+.portfolio-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.glitch::before {
-  left: 2px;
-  text-shadow: -1px 0 var(--secondary);
-  clip: rect(24px, 550px, 90px, 0);
-  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
 }
 
-.glitch::after {
-  left: -2px;
-  text-shadow: -1px 0 var(--primary);
-  clip: rect(85px, 550px, 140px, 0);
-  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+/* Testimonials */
+/* Testimonial Carousel */
+.testimonial-carousel {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
-/* Scroll-triggered animations */
+.testimonial-slide {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.testimonial-slide.active {
+  display: block;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--light);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+/* Contact Form Improvements */
+
+
+
+
+/* Contact Form */
+#contact-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--primary);
+  color: var(--light);
+  border-radius: 5px;
+}
+
+@media (max-width: 500px) {
+
+  input,
+  textarea {
+    font-size: 16px;
+    /* Prevents zoom on mobile */
+  }
+}
+
+/* CTA Button */
+.cta-button {
+  font-size: 1.2rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background-color: var(--secondary);
+  color: var(--light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: all 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Interactive Background */
+#interactive-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Fade-in Animation */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.fade-in.is-visible {
+.fade-in.appear {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-color);
-}
+  .section-title {
+    font-size: 2.5rem;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-dark);
-}
-
-/* Theme toggle button */
-#theme-toggle {
-  transition: background-color 0.3s ease;
-}
-
-#theme-toggle:hover {
-  background-color: var(--primary);
-}
-
-.dark #theme-toggle:hover {
-  background-color: var(--secondary);
-}
-
-/* Improved contrast for links in dark mode */
-.dark a {
-  color: var(--secondary);
-}
-
-.dark a:hover {
-  color: var(--secondary-light);
-}
-
-/* Adjust header for better visibility in dark mode */
-.dark header {
-  background-color: rgba(40, 42, 54, 0.8);
-  /* Semi-transparent dark background */
-}
-
-.dark header.scrolled {
-  background-color: #282A36;
-  /* Solid dark background when scrolled */
+  .services-grid,
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
 }

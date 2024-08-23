@@ -1,167 +1,144 @@
-// KimCode Creations - JavaScript Interactivity
+document.addEventListener('DOMContentLoaded', () => {
+  // Interactive background
+  const canvas = document.getElementById('interactive-bg');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-// Particle.js configuration
-const particlesConfig = {
-  particles: {
-    number: {
-      value: 80,
-      density: {
-        enable: true,
-        value_area: 800
-      }
-    },
-    color: {
-      value: "#FF6B6B"
-    },
-    shape: {
-      type: "circle"
-    },
-    opacity: {
-      value: 0.5,
-      random: false
-    },
-    size: {
-      value: 3,
-      random: true
-    },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: "#FF6B6B",
-      opacity: 0.4,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 6,
-      direction: "none",
-      random: false,
-      straight: false,
-      out_mode: "out",
-      bounce: false
+  let particles = [];
+  const numParticles = 100;
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 5 + 1;
+      this.speedX = Math.random() * 3 - 1.5;
+      this.speedY = Math.random() * 3 - 1.5;
     }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: {
-        enable: true,
-        mode: "repulse"
-      },
-      onclick: {
-        enable: true,
-        mode: "push"
-      },
-      resize: true
-    },
-    modes: {
-      repulse: {
-        distance: 100,
-        duration: 0.4
-      },
-      push: {
-        particles_nb: 4
-      }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.size > 0.2) this.size -= 0.1;
     }
-  },
-  retina_detect: true
-};
-
-particlesJS("particles-js", particlesConfig);
-
-// Navbar scroll effect
-const header = document.getElementById('header');
-const navLinks = document.querySelectorAll('#nav-links a');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-    navLinks.forEach(link => link.classList.remove('text-gray-400', 'hover:text-gray-500'));
-    navLinks.forEach(link => link.classList.add('text-gray-800', 'dark:text-gray-200', 'hover:text-primary', 'dark:hover:text-secondary'));
-  } else {
-    header.classList.remove('scrolled');
-    navLinks.forEach(link => link.classList.add('text-gray-400', 'hover:text-gray-500'));
-    navLinks.forEach(link => link.classList.remove('text-gray-800', 'dark:text-gray-200', 'hover:text-primary', 'dark:hover:text-secondary'));
+    draw() {
+      ctx.fillStyle = '#00ffff';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
   }
-});
-// Mobile menu toggle
-const burgerMenu = document.getElementById('burger-menu');
-const navMenu = document.getElementById('nav-links');
 
-burgerMenu.addEventListener('click', () => {
-  navMenu.classList.toggle('hidden');
-});
+  function init() {
+    particles = [];
+    for (let i = 0; i < numParticles; i++) {
+      particles.push(new Particle());
+    }
+  }
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+      if (particles[i].size <= 0.2) {
+        particles.splice(i, 1);
+        i--;
+        particles.push(new Particle());
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  init();
+  animate();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    init();
+  });
+
+  document.addEventListener('mousemove', (event) => {
+    for (let i = 0; i < 5; i++) {
+      particles.push(new Particle());
+      particles[particles.length - 1].x = event.x;
+      particles[particles.length - 1].y = event.y;
+    }
+  });
+
+  // Smooth scrolling for navigation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
     });
   });
-});
 
-// Scroll-triggered animations
-const fadeElems = document.querySelectorAll('.fade-in');
+  // Hamburger menu toggle
+  const navbarToggle = document.querySelector('.navbar-toggle');
+  const navMenu = document.querySelector('nav ul');
 
-const fadeIn = (elem) => {
-  const distInView = elem.getBoundingClientRect().top - window.innerHeight + 20;
-  if (distInView < 0) {
-    elem.classList.add('is-visible');
-  } else {
-    elem.classList.remove('is-visible');
+  navbarToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+
+  // Form submission
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Here you would typically send the form data to a server
+      // For now, we'll just log it to the console
+      const formData = new FormData(this);
+      console.log('Form submitted with the following data:');
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+      alert('Thank you for your message! We will get back to you soon.');
+      this.reset();
+    });
   }
-};
 
-window.addEventListener('scroll', () => {
-  fadeElems.forEach(elem => fadeIn(elem));
-});
+  // Testimonial Carousel
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const prevButton = document.querySelector('.carousel-button.prev');
+  const nextButton = document.querySelector('.carousel-button.next');
+  let currentSlide = 0;
 
-// Initialize animations on load
-window.addEventListener('load', () => {
-  fadeElems.forEach(elem => fadeIn(elem));
-});
-
-// Dark mode toggle
-const themeToggle = document.getElementById('theme-toggle');
-const htmlElement = document.documentElement;
-// Update particle colors for dark mode
-const updateParticleColors = (isDark) => {
-  const colors = isDark ? "#8BE9FD" : "#FF6B6B";
-  if (window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS) {
-    window.pJSDom[0].pJS.particles.color.value = colors;
-    window.pJSDom[0].pJS.particles.line_linked.color = colors;
-    window.pJSDom[0].pJS.fn.particlesRefresh();
+  function showSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
   }
-};
 
-const setTheme = (isDark) => {
-  if (isDark) {
-    htmlElement.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    htmlElement.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
-  }
-  updateParticleColors(isDark);
-};
+  prevButton.addEventListener('click', () => showSlide(currentSlide - 1));
+  nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
 
-// Check for saved theme preference or prefer-color-scheme
-const savedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  // Automatic slide change (optional)
+  setInterval(() => showSlide(currentSlide + 1), 5000);
 
-if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-  setTheme(true);
-}
+  // Intersection Observer for fade-in effect
+  const faders = document.querySelectorAll('.fade-in');
+  const appearOptions = {
+    threshold: 0.5,
+    rootMargin: "0px 0px -100px 0px"
+  };
 
-// Theme toggle event listener
-themeToggle.addEventListener('click', () => {
-  const isDark = htmlElement.classList.toggle('dark');
-  setTheme(isDark);
-});
+  const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        return;
+      } else {
+        entry.target.classList.add('appear');
+        appearOnScroll.unobserve(entry.target);
+      }
+    });
+  }, appearOptions);
 
-// Listen for changes in color scheme preference
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-  setTheme(e.matches);
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
 });
