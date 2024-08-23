@@ -13,144 +13,146 @@
 
 <body>
   <div id="particles-js"></div>
-  <header>
-    <nav>
-      <button class="navbar-toggle" aria-label="Toggle navigation">☰</button>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div id="content-wrapper">
+    <header>
+      <nav>
+        <button class="navbar-toggle" aria-label="Toggle navigation">☰</button>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="container">
-        <h1 class="neon-text">KimCode Creations</h1>
-        <p class="tagline">Innovative Web Solutions</p>
-        <a href="#contact" class="cta-button">Get Started</a>
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="container">
-        <h2 class="section-title neon-text">Our Services</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <h3>Web Design</h3>
-            <p>Stunning, responsive designs that capture your brand's essence.</p>
-          </div>
-          <div class="service-card">
-            <h3>Web Development</h3>
-            <p>Robust and scalable web applications built with cutting-edge technologies.</p>
-          </div>
-          <div class="service-card">
-            <h3>SEO Optimization</h3>
-            <p>Boost your online presence and reach your target audience effectively.</p>
-          </div>
+    <div>
+      <section id="home" class="hero">
+        <div class="container">
+          <h1 class="neon-text">KimCode Creations</h1>
+          <p class="tagline">Innovative Web Solutions</p>
+          <a href="#contact" class="cta-button">Get Started</a>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="portfolio">
-      <div class="container">
-        <h2 class="section-title neon-text">Our Work</h2>
-        <div class="portfolio-grid">
-          <div class="portfolio-item" style="background-image: url('https://picsum.photos/400/300?random=1');">
-            <div class="portfolio-overlay">
-              <h3>Project Name 1</h3>
-              <p>Web Design & Development</p>
+      <section id="services">
+        <div class="container">
+          <h2 class="section-title neon-text">Our Services</h2>
+          <div class="services-grid">
+            <div class="service-card">
+              <h3>Web Design</h3>
+              <p>Stunning, responsive designs that capture your brand's essence.</p>
             </div>
-          </div>
-          <div class="portfolio-item" style="background-image: url('https://picsum.photos/400/300?random=2');">
-            <div class="portfolio-overlay">
-              <h3>Project Name 2</h3>
-              <p>E-commerce Solution</p>
+            <div class="service-card">
+              <h3>Web Development</h3>
+              <p>Robust and scalable web applications built with cutting-edge technologies.</p>
             </div>
-          </div>
-          <div class="portfolio-item" style="background-image: url('https://picsum.photos/400/300?random=3');">
-            <div class="portfolio-overlay">
-              <h3>Project Name 3</h3>
-              <p>Mobile App Development</p>
+            <div class="service-card">
+              <h3>SEO Optimization</h3>
+              <p>Boost your online presence and reach your target audience effectively.</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="testimonials">
-      <div class="container">
-        <h2 class="section-title neon-text">Client Testimonials</h2>
-        <div class="testimonial-slider">
-          <div class="testimonial-track">
-            <div class="testimonial-slide">
-              <div class="testimonial-content">
-                <p>"KimCode Creations transformed our online presence. Their expertise and creativity are unmatched!"
-                </p>
-                - John Doe, CEO of TechStart
+      <section id="portfolio">
+        <div class="container">
+          <h2 class="section-title neon-text">Our Work</h2>
+          <div class="portfolio-grid">
+            <div class="portfolio-item" style="background-image: url('https://picsum.photos/400/300?random=1');">
+              <div class="portfolio-overlay">
+                <h3>Project Name 1</h3>
+                <p>Web Design & Development</p>
               </div>
             </div>
-            <div class="testimonial-slide">
-              <div class="testimonial-content">
-                <p>"Working with KimCode was a game-changer for our business. Highly recommended!"</p>
-                - Jane Smith, Founder of GreenEco
+            <div class="portfolio-item" style="background-image: url('https://picsum.photos/400/300?random=2');">
+              <div class="portfolio-overlay">
+                <h3>Project Name 2</h3>
+                <p>E-commerce Solution</p>
               </div>
             </div>
-            <div class="testimonial-slide">
-              <div class="testimonial-content">
-                <p>"Innovative solutions and top-notch support. KimCode Creations exceeded our expectations!"</p>
-                - Alex Johnson, CTO of FutureTech
+            <div class="portfolio-item" style="background-image: url('https://picsum.photos/400/300?random=3');">
+              <div class="portfolio-overlay">
+                <h3>Project Name 3</h3>
+                <p>Mobile App Development</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="testimonial-nav">
-          <button class="prev-testimonial">&#10094;</button>
-          <button class="next-testimonial">&#10095;</button>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="contact">
-      <div class="container">
-        <h2 class="section-title neon-text">Get in Touch</h2>
-        <form id="contact-form" novalidate>
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
+      <section id="testimonials">
+        <div class="container">
+          <h2 class="section-title neon-text">Client Testimonials</h2>
+          <div class="testimonial-slider">
+            <div class="testimonial-track">
+              <div class="testimonial-slide">
+                <div class="testimonial-content">
+                  <p>"KimCode Creations transformed our online presence. Their expertise and creativity are unmatched!"
+                  </p>
+                  - John Doe, CEO of TechStart
+                </div>
+              </div>
+              <div class="testimonial-slide">
+                <div class="testimonial-content">
+                  <p>"Working with KimCode was a game-changer for our business. Highly recommended!"</p>
+                  - Jane Smith, Founder of GreenEco
+                </div>
+              </div>
+              <div class="testimonial-slide">
+                <div class="testimonial-content">
+                  <p>"Innovative solutions and top-notch support. KimCode Creations exceeded our expectations!"</p>
+                  - Alex Johnson, CTO of FutureTech
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
+          <div class="testimonial-nav">
+            <button class="prev-testimonial">&#10094;</button>
+            <button class="next-testimonial">&#10095;</button>
           </div>
-          <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-          </div>
-          <button type="submit" class="cta-button">Send Message</button>
-        </form>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <div class="social-icons">
-          <a href="#" class="social-icon" aria-label="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-icon" aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="#" class="social-icon" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
         </div>
-        <p>&copy; 2024 KimCode Creations. All rights reserved.</p>
-      </div>
-    </footer>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <h2 class="section-title neon-text">Get in Touch</h2>
+          <form id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="cta-button">Send Message</button>
+          </form>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container">
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <p>&copy; 2024 KimCode Creations. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
 
     <canvas id="interactive-bg"></canvas>
 

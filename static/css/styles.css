@@ -15,7 +15,7 @@
   padding: 0;
 }
 
-body,
+/* body,
 html {
   width: 100%;
   overflow-x: hidden;
@@ -24,6 +24,46 @@ html {
   line-height: 1.5;
   background-color: var(--dark);
   color: var(--light);
+} */
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark);
+  /* Use your dark background color */
+  z-index: -1;
+}
+
+#content-wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+}
+
+/* Ensure other elements have a background if needed */
+header,
+footer,
+section {
+  background-color: rgba(18, 18, 18, 0.7);
+  /* Adjust opacity as needed */
+}
+
+/* If you want specific sections to be transparent */
+.transparent-section {
+  background-color: transparent;
 }
 
 .container {
