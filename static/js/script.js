@@ -85,22 +85,59 @@ document.addEventListener('DOMContentLoaded', () => {
     navMenu.classList.toggle('show');
   });
 
-  // Form submission
+  // Contact Form Handling
   const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      // Here you would typically send the form data to a server
-      // For now, we'll just log it to the console
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    if (this.checkValidity()) {
+      // Form is valid, proceed with submission
       const formData = new FormData(this);
+
+      // Here you would typically send the form data to a server
+      // For demonstration, we'll just log it to the console
       console.log('Form submitted with the following data:');
       for (let [key, value] of formData.entries()) {
         console.log(`${key}: ${value}`);
       }
-      alert('Thank you for your message! We will get back to you soon.');
+
+      // Show a success message
+      showFormMessage('Thank you for your message! We will get back to you soon.', 'success');
+
+      // Reset the form
       this.reset();
-    });
+    } else {
+      // Form is invalid, show error messages
+      showFormMessage('Please fill out all required fields correctly.', 'error');
+    }
+  });
+
+  function showFormMessage(message, type) {
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.className = `form-message ${type}`;
+
+    contactForm.appendChild(messageElement);
+
+    // Remove the message after 5 seconds
+    setTimeout(() => {
+      messageElement.remove();
+    }, 5000);
   }
+
+  // Real-time form validation feedback
+  contactForm.querySelectorAll('input, textarea').forEach(input => {
+    input.addEventListener('blur', function () {
+      if (this.checkValidity()) {
+        this.classList.remove('invalid');
+        this.classList.add('valid');
+      } else {
+        this.classList.remove('valid');
+        this.classList.add('invalid');
+      }
+    });
+  });
 
   // Testimonial Carousel
   const slides = document.querySelectorAll('.testimonial-slide');
