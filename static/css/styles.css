@@ -54,7 +54,7 @@ html {
 }
 
 /* Ensure other elements have a background if needed */
-header,
+/* header, */
 footer,
 section {
   background-color: rgba(18, 18, 18, 0.7);
@@ -385,6 +385,123 @@ section {
 @media (min-width: 768px) {
   .testimonial-slide {
     padding: 2rem 4rem;
+  }
+}
+
+/* Pricing Section Styles */
+.pricing-section {
+  padding: 4rem 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.pricing-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%,
+      transparent 0deg,
+      var(--primary) 60deg,
+      transparent 120deg);
+  animation: rotate 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.pricing-card:hover::before {
+  opacity: 0.1;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.pricing-card.featured {
+  transform: scale(1.05);
+  border-color: var(--secondary);
+}
+
+.tier-name {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.price span {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.features {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.features li {
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.pricing-card .cta-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary);
+  color: var(--dark);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.pricing-card .cta-button:hover {
+  background-color: var(--secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
+}
+
+.pricing-card.featured .cta-button {
+  background-color: var(--secondary);
+}
+
+.pricing-card.featured .cta-button:hover {
+  background-color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-card.featured {
+    transform: scale(1);
   }
 }
 
