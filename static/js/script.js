@@ -139,43 +139,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Testimonial Carousel
-  const slides = document.querySelectorAll('.testimonial-slide');
-  const prevButton = document.querySelector('.carousel-button.prev');
-  const nextButton = document.querySelector('.carousel-button.next');
+  // Testimonial Slider
+  const testimonialTrack = document.querySelector('.testimonial-track');
+  const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+  const prevButton = document.querySelector('.prev-testimonial');
+  const nextButton = document.querySelector('.next-testimonial');
   let currentSlide = 0;
 
-  function showSlide(n) {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
+  function updateSlidePosition() {
+    testimonialTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
   }
 
-  prevButton.addEventListener('click', () => showSlide(currentSlide - 1));
-  nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
+  function moveToNextSlide() {
+    if (currentSlide === testimonialSlides.length - 1) {
+      currentSlide = 0;
+    } else {
+      currentSlide++;
+    }
+    updateSlidePosition();
+  }
 
-  // Automatic slide change (optional)
-  setInterval(() => showSlide(currentSlide + 1), 5000);
+  function moveToPrevSlide() {
+    if (currentSlide === 0) {
+      currentSlide = testimonialSlides.length - 1;
+    } else {
+      currentSlide--;
+    }
+    updateSlidePosition();
+  }
 
-  // Intersection Observer for fade-in effect
-  const faders = document.querySelectorAll('.fade-in');
-  const appearOptions = {
-    threshold: 0.5,
-    rootMargin: "0px 0px -100px 0px"
-  };
+  nextButton.addEventListener('click', moveToNextSlide);
+  prevButton.addEventListener('click', moveToPrevSlide);
 
-  const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) {
-        return;
-      } else {
-        entry.target.classList.add('appear');
-        appearOnScroll.unobserve(entry.target);
-      }
-    });
-  }, appearOptions);
+  // Auto-slide functionality
+  let slideInterval = setInterval(moveToNextSlide, 5000);
 
-  faders.forEach(fader => {
-    appearOnScroll.observe(fader);
+  // Pause auto-slide on hover
+  testimonialTrack.addEventListener('mouseenter', () => {
+    clearInterval(slideInterval);
   });
-});
+
+  testimonialTrack.addEventListener('mouseleave', () => {
+    slideInterval = setInterval(moveToNextSlide, 5000);
+  });
+
+  // Add this to your existing window.addEventListener('load', ...) function
+  window.addEventListener('load', () => {
+    // ... (other code)
+
+    // Initialize testimonial slider
+    updateSlidePosition();
+  });
+})
